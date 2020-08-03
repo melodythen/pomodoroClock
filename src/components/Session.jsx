@@ -14,11 +14,11 @@ const Session = (props) => {
     const sessionLengthInMinutes= moment.duration(sessionLength,'s').minutes()
 
     return (
-        <div>
-        <p id= "session-label">Session</p>
-        <p id="session-length">{sessionLengthInMinutes}</p>
-        <button id="session-decrement" onClick={decrementSessionLengthOneMinute}>-</button>
-        <button id="session-increment" onClick={incrementSessionLengthOneMinute}>+</button>
+        <div className= "session">
+        <p id= "session-label">Session Length</p>
+        <p id="session-length">{sessionLengthInMinutes} minutes</p>
+        <button className="btn btn-secondary" id="session-decrement" onClick={decrementSessionLengthOneMinute}>-</button>
+        <button className="btn btn-secondary" id="session-increment" onClick={incrementSessionLengthOneMinute}>+</button>
         </div>
         
 
