@@ -1,27 +1,49 @@
 .break, .session {
     text-align: center;
-    border: 1px solid black;
-    padding: 10px;
+    border: 10px outset #0e7774;
+    padding: 20px;
     font-size: large;
     margin: 0px auto;
-    color:black;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: white;
-    border-radius: 10%;
+
+    color: #f0fafa;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #399c99;
+
+    border-radius: 5px;
     
     
 }
-.digitalclock{
 
+
+
+.title{
+    font-size: 200%;
+    float:left;
+
+    
 }
 
-.timecontainer div{
-    color: black;
-    margin: 0px auto;
-    text-align: center;
-    justify-content: center;
-    border: 2px solid rgb(107, 82, 82);
+.dig-clock{
+    color: white;
+    float: right;
+}
+
+.App{
+    background-color: #7ca7a5;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: auto;
+    resize: both;
+    position: relative;
+ 
+ 
     
+}
+.timecontainer{
+    float: right;
+    border: 2px solid white;    
 }
 
 .row div{
@@ -36,7 +58,7 @@
     font-size: 30px;
     font-family: monospace;
     justify-content: center;
-    height: 400px;
+    height: auto;
     
 }
 .timeleft button{
@@ -45,7 +67,7 @@
     
 }
 .countdown{
-    border: 2px solid gray;
+  
     padding: 10px;
     font-size: 40px;
     border-radius: 50px;

@@ -1,26 +1,11 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Break from './components/Break'
 import Session from './components/Session';
 import DigitalClock from './components/Clock';
 import TimeLeft from './components/TimeLeft';
-import Unsplash, {toJson} from 'unsplash-js';
-
-
+import  { Container,Col, Row } from 'react-bootstrap';
 
 function App() {
-  document.body.style.backgroundColor= "#edf5e6";
-  //API USAGE
-  const unsplash = new Unsplash({ accessKey: "I0vIEW0JR-4DUPd7urCdrkyP6USFoFCSMMUqXh0ggMI" });
-  let img_url = "";
-  /***** UN COMMENT TO LET AUTO GENERATE BACKGROUND!!!  */
-  // unsplash.photos.getRandomPhoto({query:"plain"})
-  // .then(toJson)
-  // .then(json => {
-  //   // Do something with the json object
-  //   console.log(json.urls.raw + "auto=format");
-  //   img_url = json.urls.raw + "auto=format";
-  //   document.body.style.backgroundImage = "url(" + img_url + ")";
-  // });
 
 //BREAK : putting these attributes on app so timer can access
   const [currentSessionType, setCurrentSessionType]= useState('Session'); //be session or break
@@ -47,26 +32,26 @@ function App() {
 
 
  useEffect(() => {
-  if(currentSessionType == "Session"){
+  if(currentSessionType === "Session"){
     setTimeLeft(sessionLength);
     
-  }else if (currentSessionType == "Break"){
+    
+  }else if (currentSessionType === "Break"){
     setTimeLeft(breakLength);
   }
 },[currentSessionType,sessionLength,breakLength]);
 
 
   useEffect(()=> {
-    if (timeLeft == 0){
+    if (timeLeft < 0){
+
+
       if (currentSessionType === "Session"){
         setCurrentSessionType("Break");
         setTimeLeft(breakLength);
- 
         clearInterval(intervalId);
         setIntervalId(null);
-
         setReadyStatus(false);
-       
 
         
       }else if (currentSessionType === "Break"){
@@ -76,15 +61,10 @@ function App() {
         setIntervalId(null);
  
         setReadyStatus(false);
-
-
-        
-       
-
       }
     }
 
-  }, [breakLength,currentSessionType,sessionLength,timeLeft]);
+  }, [breakLength,currentSessionType,sessionLength,intervalId,timeLeft]);
   //interval Id = null then everything is stopped 
 
 
@@ -96,11 +76,11 @@ function App() {
       //use setInterval
   //if we are in started mode, have a stop timer (clear interval)  
   setReadyStatus(true);
+  
 
       if ( isStarted){
           clearInterval(intervalId);
           setIntervalId(null);
-          console.log("stoped");
       }else {
         
           const newIntervalId = setInterval(() => {
@@ -140,9 +120,18 @@ function App() {
 
   return (
     <div className="App">
-      <div className="timecontainer">
-        <DigitalClock/>
-      </div>
+      <Container>
+        <Row>
+          <Col sm={8} className="title"> <h1>POMODORO TECHNIQUE</h1></Col>
+          <Col sm={4} className="dig-clock"><DigitalClock/> </Col>
+
+        </Row>
+
+      </Container>
+       
+      
+
+
       <div className="row">
        
         <div>
@@ -172,9 +161,7 @@ function App() {
           timeLeft = {timeLeft}
           handleResetButtonClick= {handleResetButtonClick}
           readyStatus={readyStatus}
-          />  
-     
-        
+          /> 
 
     </div>
 

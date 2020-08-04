@@ -18,9 +18,9 @@ const TimeLeft = ({
    let divpercent = null;
     //change timeleft when session length changes
     //this runs whenever session length ( , [ session length]) changes
-    if (timerLabel == "Session"){
+    if (timerLabel === "Session"){
          divpercent = sessionLength;
-    }else if (timerLabel =="Break"){
+    }else if (timerLabel === "Break"){
          divpercent = breakLength;
     }
     let time_str = ""
@@ -35,9 +35,9 @@ const TimeLeft = ({
         
 
            <p id="timer-label"> {time_str}</p>
-           <ProgressBar now={(timeLeft/divpercent) * 100}/>
+           <ProgressBar now={ ((timeLeft)/divpercent) * 100 }/>
             <p  id= "timeLeft" >{formattedTimeLeft} </p>
-
+        
             
             <button className="btn btn-primary mr-4" onClick={handleSTartStopClick}>{startStopButtontimerLabel}</button>
             <button className="btn btn-danger" id="reset" onClick ={handleResetButtonClick}>Reset</button>

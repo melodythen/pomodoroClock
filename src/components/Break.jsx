@@ -17,8 +17,9 @@ const Break = ({
         <div className = "break">
         <p id= "break-label">Break Length</p>
         <p id="break-length">{breakLengthInMinutes} minutes</p>
-        <button className="btn btn-secondary"id="break-decrement" onClick={decrementBreakLengthOneMinute}>-</button>
-        <button className="btn btn-secondary" id="break-increment" onClick={incrementBreakLengthOneMinute}>+</button>
+        <button className="btn btn-lg btn-light btn-block"  id="break-increment" onClick={incrementBreakLengthOneMinute}>+</button>
+
+        <button className="btn btn-lg btn-dark btn-block" id="break-decrement" onClick={decrementBreakLengthOneMinute}>-</button>
         </div>
         
 

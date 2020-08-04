@@ -15,10 +15,11 @@ const Session = (props) => {
 
     return (
         <div className= "session">
-        <p id= "session-label">Session Length</p>
+        <p id= "session-label" >Session Length</p>
         <p id="session-length">{sessionLengthInMinutes} minutes</p>
-        <button className="btn btn-secondary" id="session-decrement" onClick={decrementSessionLengthOneMinute}>-</button>
-        <button className="btn btn-secondary" id="session-increment" onClick={incrementSessionLengthOneMinute}>+</button>
+        <button className="btn  btn-lg btn-light btn-block" id="session-increment" onClick={incrementSessionLengthOneMinute}>+</button>
+
+        <button className="btn btn-lg btn-dark btn-block" id="session-decrement" onClick={decrementSessionLengthOneMinute}>-</button>
         </div>
         
 
