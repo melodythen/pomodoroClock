@@ -11,8 +11,19 @@
     
     
 }
-.session p{
+.digitalclock{
+
 }
+
+.timecontainer div{
+    color: black;
+    margin: 0px auto;
+    text-align: center;
+    justify-content: center;
+    border: 2px solid rgb(107, 82, 82);
+    
+}
+
 .row div{
     margin: 20px auto;
 }

@@ -9,6 +9,7 @@ const TimeLeft = ({
     handleResetButtonClick,
     sessionLength,
     breakLength,
+    readyStatus,
 }) => {
 
  
@@ -22,11 +23,18 @@ const TimeLeft = ({
     }else if (timerLabel =="Break"){
          divpercent = breakLength;
     }
-
+    let time_str = ""
+    if (readyStatus){
+        time_str =`Time Remaining for the ${timerLabel}`;
+    }else{
+        time_str = `Ready for a ${timerLabel}?`;
+    }
 
     return (
         <div className="timeleft">
-           <p id="timer-label"> Time Remaining for {timerLabel}</p>
+        
+
+           <p id="timer-label"> {time_str}</p>
            <ProgressBar now={(timeLeft/divpercent) * 100}/>
             <p  id= "timeLeft" >{formattedTimeLeft} </p>
 

@@ -1,9 +1,11 @@
 import React, {useState, useEffect, Component} from 'react';
 import Break from './components/Break'
 import Session from './components/Session';
+import DigitalClock from './components/Clock';
 import TimeLeft from './components/TimeLeft';
 import Unsplash, {toJson} from 'unsplash-js';
-import { ProgressBar } from 'react-bootstrap';
+
+
 
 function App() {
   document.body.style.backgroundColor= "#edf5e6";
@@ -23,10 +25,10 @@ function App() {
 //BREAK : putting these attributes on app so timer can access
   const [currentSessionType, setCurrentSessionType]= useState('Session'); //be session or break
   const [intervalId, setIntervalId] = useState(null);
-  const [sessionLength, setSessionLength ] = useState(60*25); //returns tupple of session length (s) and setter
+  const [sessionLength, setSessionLength ] = useState(60*5); //returns tupple of session length (s) and setter
   const [breakLength, setBreakLength ] = useState(300); //returns tupple of break length (s) and setter
   const [timeLeft, setTimeLeft] = useState(sessionLength); 
-   
+  const [readyStatus, setReadyStatus] = useState(true);
 
  //SESSION
   
@@ -47,6 +49,7 @@ function App() {
  useEffect(() => {
   if(currentSessionType == "Session"){
     setTimeLeft(sessionLength);
+    
   }else if (currentSessionType == "Break"){
     setTimeLeft(breakLength);
   }
@@ -58,9 +61,26 @@ function App() {
       if (currentSessionType === "Session"){
         setCurrentSessionType("Break");
         setTimeLeft(breakLength);
+ 
+        clearInterval(intervalId);
+        setIntervalId(null);
+
+        setReadyStatus(false);
+       
+
+        
       }else if (currentSessionType === "Break"){
         setCurrentSessionType("Session");
         setTimeLeft(sessionLength);
+        clearInterval(intervalId);
+        setIntervalId(null);
+ 
+        setReadyStatus(false);
+
+
+        
+       
+
       }
     }
 
@@ -75,9 +95,12 @@ function App() {
       // decrement timeleft by 1 every second (1000 ms)
       //use setInterval
   //if we are in started mode, have a stop timer (clear interval)  
+  setReadyStatus(true);
+
       if ( isStarted){
           clearInterval(intervalId);
           setIntervalId(null);
+          console.log("stoped");
       }else {
         
           const newIntervalId = setInterval(() => {
@@ -115,11 +138,13 @@ function App() {
   }
 
 
-
   return (
     <div className="App">
-
+      <div className="timecontainer">
+        <DigitalClock/>
+      </div>
       <div className="row">
+       
         <div>
           <Session
             sessionLength= {sessionLength}
@@ -146,10 +171,13 @@ function App() {
           startStopButtontimerLabel={isStarted? "Stop" : "Start"}
           timeLeft = {timeLeft}
           handleResetButtonClick= {handleResetButtonClick}
+          readyStatus={readyStatus}
           />  
-      
+     
+        
 
     </div>
+
     
   );
   
