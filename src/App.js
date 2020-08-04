@@ -2,13 +2,23 @@ import React, {useState, useEffect, Component} from 'react';
 import Break from './components/Break'
 import Session from './components/Session';
 import TimeLeft from './components/TimeLeft';
-import Unsplash from 'unsplash-js';
+import Unsplash, {toJson} from 'unsplash-js';
+import { ProgressBar } from 'react-bootstrap';
 
 function App() {
+  document.body.style.backgroundColor= "#edf5e6";
   //API USAGE
-
-
-
+  const unsplash = new Unsplash({ accessKey: "I0vIEW0JR-4DUPd7urCdrkyP6USFoFCSMMUqXh0ggMI" });
+  let img_url = "";
+  /***** UN COMMENT TO LET AUTO GENERATE BACKGROUND!!!  */
+  // unsplash.photos.getRandomPhoto({query:"plain"})
+  // .then(toJson)
+  // .then(json => {
+  //   // Do something with the json object
+  //   console.log(json.urls.raw + "auto=format");
+  //   img_url = json.urls.raw + "auto=format";
+  //   document.body.style.backgroundImage = "url(" + img_url + ")";
+  // });
 
 //BREAK : putting these attributes on app so timer can access
   const [currentSessionType, setCurrentSessionType]= useState('Session'); //be session or break
@@ -110,14 +120,14 @@ function App() {
     <div className="App">
 
       <div className="row">
-        <div className= "col-lg">
+        <div>
           <Session
             sessionLength= {sessionLength}
             decrementSessionLengthOneMinute={decrementSessionLengthOneMinute}
             incrementSessionLengthOneMinute={incrementSessionLengthOneMinute}
           />
         </div>
-        <div className= "col-lg">
+        <div >
           <Break
             breakLength = {breakLength}
             decrementBreakLengthOneMinute = {decrementBreakLengthOneMinute}
@@ -125,6 +135,7 @@ function App() {
             />
 
         </div>
+        
       </div>
 
         <TimeLeft 
@@ -136,9 +147,12 @@ function App() {
           timeLeft = {timeLeft}
           handleResetButtonClick= {handleResetButtonClick}
           />  
+      
 
     </div>
+    
   );
+  
 }
 
 export default App;
